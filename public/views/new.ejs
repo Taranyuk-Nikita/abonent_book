@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Список абонентов</title>
+      <link rel="stylesheet" href="style/list.css">    
+</head>
+<body>
+    <main>
+        <h1>Добавить аббонента</h1>
+        <form method="POST" action='/addAbonent'>
+            <div class="main-info">
+              <label>Номер телефона:</label>
+              <input type="number" id="phone" name="phone" required />
+              <label>Фамилия:</label>
+              <input type="text" name="last_name" required />
+              <label>Имя:</label>
+              <input type="text" name="first_name" required />
+              <label>Отчество:</label>
+              <input type="text" name="fathers_name" required />
+              <label>Домашний адрес:</label>
+              <textarea rows='3' maxlength="200" name="home_address" placeholder="Максимум 200 символов..."></textarea>  
+            </div>
+            <div class="controll_but">
+              <input class="button-3" type="submit" name='add-record' value="Добавить">
+              <input class="button-4" type="button" name='back' value="Отмена"  onclick="history.back(-1)">
+            </div>
+          </form>
+    </main>
+</body>
+</html>

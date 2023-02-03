@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Список абонентов</title>
+      <link rel="stylesheet" href="/style/list.css">    
+</head>
+<body>
+    <main>
+        <h1>Добавить запись</h1>
+        <form method="POST" action='/history/<%= phone %>/addRecord'>
+            <div class="main-info">
+              <label>Тип:</label>
+              <select name="call_type" required>
+                <option value="" disabled selected>Выберите значение</option>
+                <option value="Входящий">Входящий</option>
+                <option value="Исходящий">Исходящий</option>
+                <option value="Пропущенный">Пропущенный</option>
+              </select>
+              <label>Абонент:</label>
+              <input type="number" name="call_number" required />
+              <label>Дата:</label>
+              <input type="datetime-local" name="call_date" required />
+              <label>Длительность:</label>
+              <input type="time" name="call_duration" required />
+            </div>
+            <div class="controll_but">
+              <input class="button-3" type="submit" name='add-record' value="Добавить">
+              <input class="button-4" type="button" name='back' value="Отмена"  onclick="history.back(-1)">
+            </div>
+          </form>
+    </main>
+</body>
+</html>

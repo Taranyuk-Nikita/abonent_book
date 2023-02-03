@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Список абонентов</title>
+    <link rel="stylesheet" href="../style/list.css">  
+</head>
+<body>
+    <main>
+        <h1>История вызовов абонента</h1>
+        <div class="controll_but">
+            <button class="button-3"  onclick="document.location='/history/<%= phoneHistory.phone %>/addRecord'">Добавить запись</button>
+            <button class="button-4"  onclick="document.location='/'">К списку абонентов</button>
+        </div>
+        <% let i = 0 %>
+        <% if (phoneHistory.history.length) {%>
+        <table>
+            <thead>
+                <tr>
+                    <th>№</th>
+                    <th>Тип</th>
+                    <th>Абонент</th>
+                    <th>Дата</th>
+                    <th>Длительность</th>
+                    <th colspan="2">Управление</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% phoneHistory.history.forEach(element => { %>
+                    <tr>
+                        <td><%= ++i %></td>
+                        <td><%= element.type %></td>
+                        <td><%= element.phoneCalls %></td>
+                        <td><%= element.date %></td>
+                        <td><%= element.duration %></td>
+                        <td>
+                            <button class="button-4" onclick="document.location='/history/<%= phoneHistory.phone %>/editRecord/<%= i-1 %>'"><i class="fa-solid fa-pencil"></i></button>
+                        </td>
+                        <td>
+                            <button class="button-4" id="<%= phoneHistory.phone %>" data-index="<%= i-1 %>"><i class="fa-solid fa-trash"></i></button>
+                        </td>
+                    </tr>
+                   <% }) %>
+            </tbody>
+        </table>
+        <% } %>
+    </main>
+    <script>
+        document.addEventListener('click', e => {
+            if (e.target.id) {
+                    if (confirm("Точно удалить эту запись?")) {
+                        fetch(`/history/${e.target.id}/deleteRecord/${e.target.dataset.index}`, {method: 'DELETE'})
+                        .then(() => window.location.reload(true))
+                }
+            }
+        })
+    </script>
+    <script src="https://kit.fontawesome.com/b6f52fc10b.js" crossorigin="anonymous"></script>
+</body>
+</html>
